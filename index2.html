@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Romantic Color Theme */
+      :root {
+        --love-red: #ff6b6b;
+        --soft-pink: #ffb8b8;
+        --deep-love: #d23669;
+        --gold: #ffd700;
+        --light-bg: #fff5f5;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--light-bg);
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      .birthday-container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 15px;
+        box-sizing: border-box;
+      }
+
+      /* Romantic Header */
+      .romantic-header {
+        text-align: center;
+        padding: 30px 15px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, var(--love-red), var(--soft-pink));
+        color: white;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(210, 54, 105, 0.2);
+      }
+
+      .romantic-header h1 {
+        font-family: "Dancing Script", cursive;
+        font-size: 2.5rem;
+        margin: 0;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .romantic-header p {
+        font-size: 1rem;
+        max-width: 100%;
+        margin: 15px auto;
+      }
+
+      /* Heart-Shaped Gallery - Responsive */
+      .heart-gallery {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        min-height: 400px;
+        margin: 30px auto;
+      }
+
+      .memory-card {
+        position: absolute;
+        width: 22vw;
+        height: 22vw;
+        max-width: 120px;
+        max-height: 120px;
+        min-width: 80px;
+        min-height: 80px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        background-color: white;
+      }
+
+      .memory-card:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+      }
+
+      .memory-media {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .memory-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        padding: 8px;
+        color: white;
+        font-size: 0.7rem;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .memory-card:hover .memory-overlay {
+        transform: translateY(0);
+      }
+
+      /* Heart positions - responsive */
+      .pos-1 {
+        top: 5%;
+        left: 25%;
+      }
+      .pos-2 {
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .pos-3 {
+        top: 5%;
+        right: 25%;
+      }
+
+      .pos-4 {
+        top: 15%;
+        left: 12%;
+      }
+      .pos-5 {
+        top: 15%;
+        left: 37%;
+      }
+      .pos-6 {
+        top: 15%;
+        right: 37%;
+      }
+      .pos-7 {
+        top: 15%;
+        right: 12%;
+      }
+
+      .pos-8 {
+        top: 25%;
+        left: 0%;
+      }
+      .pos-9 {
+        top: 25%;
+        left: 25%;
+      }
+      .pos-10 {
+        top: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .pos-11 {
+        top: 25%;
+        right: 25%;
+      }
+      .pos-12 {
+        top: 25%;
+        right: 0%;
+      }
+
+      .pos-13 {
+        top: 35%;
+        left: 12%;
+      }
+      .pos-14 {
+        top: 35%;
+        left: 37%;
+      }
+      .pos-15 {
+        top: 35%;
+        right: 37%;
+      }
+      .pos-16 {
+        top: 35%;
+        right: 12%;
+      }
+
+      .pos-17 {
+        top: 45%;
+        left: 25%;
+      }
+      .pos-18 {
+        top: 45%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .pos-19 {
+        top: 45%;
+        right: 25%;
+      }
+
+      .pos-20 {
+        top: 55%;
+        left: 37%;
+      }
+      .pos-21 {
+        top: 55%;
+        right: 37%;
+      }
+
+      .pos-22 {
+        top: 65%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Cute Message Section */
+      .cute-messages {
+        margin: 40px 0;
+        text-align: center;
+      }
+
+      .message-box {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 600px;
+        box-shadow: 0 5px 15px rgba(210, 54, 105, 0.1);
+        border: 2px solid var(--soft-pink);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .message-box::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 40px;
+        height: 40px;
+        background-color: var(--gold);
+        transform: rotate(45deg);
+        z-index: 0;
+      }
+
+      .message-box::after {
+        content: "❤";
+        position: absolute;
+        top: 0px;
+        right: 5px;
+        font-size: 20px;
+        color: white;
+        z-index: 1;
+      }
+
+      .code-message {
+        font-family: monospace;
+        background: rgba(255, 107, 107, 0.1);
+        padding: 12px;
+        border-radius: 10px;
+        display: inline-block;
+        margin: 10px 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-left: 3px solid var(--love-red);
+        font-size: 0.9rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .code-message:hover {
+        background: rgba(255, 107, 107, 0.2);
+        transform: translateX(5px);
+      }
+
+      .decoded-message {
+        display: none;
+        margin-top: 15px;
+        padding: 15px;
+        background: rgba(255, 184, 184, 0.3);
+        border-radius: 10px;
+        font-size: 1rem;
+        animation: fadeIn 0.5s ease;
+        border: 1px dashed var(--love-red);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Thank You Section */
+      .thank-you {
+        text-align: center;
+        margin: 50px 0 30px;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--soft-pink), white);
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .thank-you h2 {
+        font-family: "Dancing Script", cursive;
+        color: var(--deep-love);
+        font-size: 2rem;
+      }
+
+      /* Floating Hearts */
+      .floating-hearts {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 100;
+      }
+
+      .heart {
+        position: absolute;
+        font-size: 20px;
+        color: var(--love-red);
+        animation: float-up 4s linear forwards;
+        opacity: 0;
+      }
+
+      @keyframes float-up {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Music Player (hidden) */
+      #musicPlayer {
+        display: none;
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 480px) {
+        .romantic-header h1 {
+          font-size: 2rem;
+        }
+
+        .memory-card {
+          width: 18vw;
+          height: 18vw;
+          min-width: 70px;
+          min-height: 70px;
+        }
+
+        .code-message {
+          font-size: 0.8rem;
+          padding: 8px;
+        }
+
+        .decoded-message {
+          font-size: 0.9rem;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="floating-hearts" id="heartsContainer"></div>
+
+    <div class="birthday-container">
+      <header class="romantic-header">
+        <h1>Happy Birthday, My Love!</h1>
+        <p>Every moment with you is a treasure in my heart</p>
+      </header>
+
+      <section class="heart-gallery">
+        <!-- Row 1 -->
+        <div class="memory-card pos-1">
+          <img src="/jan/amr.jpeg" alt="The cutest baby" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>Your Beautiful Eyes</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-2">
+          <img src="jan/bag.jpeg" alt="Us Together" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>My lovly Janjona</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-3">
+          <img
+            src="jan/ktab.jpeg"
+            alt="Laughing Together"
+            class="memory-media"
+          />
+          <div class="memory-overlay">
+            <h3>The kindest one</h3>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="memory-card pos-4">
+          <img src="jan/cafe.jpeg" alt="Beach Day" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>My Fav</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-5">
+          <img src="jan/far.jpeg" alt="Hug" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>The craziest فارة</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-6">
+          <img src="jan/blue.jpeg" alt="Sunset" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>The prettiest Eyes</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-7">
+          <img src="jan/lebas.jpeg" alt="Dinner" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>جني اللباس</h3>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="memory-card pos-8">
+          <img src="jan/asal.jpeg" alt="Travel" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>The charismatic one (بكدب)</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-9">
+          <img src="jan/black.jpeg" alt="Celebration" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>أحيانا بحبك</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-10">
+          <img src="jan/gift.jpeg" alt="Coffee" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>الهدية حقي</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-11">
+          <img src="jan/love.jpeg" alt="Park" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>بحب الطقم ده اوي و بكرهك</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-12">
+          <img src="jan/tnha.jpeg" alt="Winter" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>أنتي ليه تنحة</h3>
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="memory-card pos-13">
+          <img src="jan/naf.jpeg" alt="Dance" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>My angel</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-14">
+          <img src="jan/shbak.jpeg" alt="Concert" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>ياخواتي ياخواتي ربنا يحميها</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-15">
+          <img src="jan/miki.jpeg" alt="Roadtrip" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>جيالنا من الدارك ويب</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-16">
+          <img src="jan/maadi.jpeg" alt="Gift" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>اديني في الشياكة</h3>
+          </div>
+        </div>
+
+        <!-- Row 5 -->
+        <div class="memory-card pos-17">
+          <img src="jan/1.jpeg" alt="Summer" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>the cutest baby girl</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-18">
+          <img src="jan/2.jpeg" alt="Kiss" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>عليكي بوز استغفر الله</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-19">
+          <img src="jan/3.jpeg" alt="Party" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>ثافلة</h3>
+          </div>
+        </div>
+
+        <!-- Row 6 -->
+        <div class="memory-card pos-20">
+          <img src="jan/us.jpeg" alt="Smiling" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>انا و الغيامة السودا</h3>
+          </div>
+        </div>
+
+        <div class="memory-card pos-21">
+          <img src="jan/us2.jpeg" alt="Photo" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>الحي ولع في الذرة</h3>
+          </div>
+        </div>
+
+        <!-- Row 7 -->
+        <div class="memory-card pos-22">
+          <img src="jan/bc.jpg" alt="Love" class="memory-media" />
+          <div class="memory-overlay">
+            <h3>Our Love</h3>
+          </div>
+        </div>
+      </section>
+
+      <section class="cute-messages">
+        <h2
+          style="
+            font-family: 'Dancing Script', cursive;
+            color: var(--deep-love);
+            font-size: 2rem;
+          "
+        >
+          Secret Messages For You
+        </h2>
+        <p style="color: var(--deep-love)">
+          Click each one to reveal my feelings ❤️
+        </p>
+
+        <div class="message-box">
+          <div class="code-message" onclick="decodeMessage(this)">
+            <pre>
+July....sweet red cherries, July is for the hopelessly in love</pre
+            >
+          </div>
+          <div class="decoded-message" style="width: px">
+            في نهايات شهر تموز منذ ما يقرب الثمانية عشرة , أنزعج الكون بإحدي
+            بقاع الأرض بصوت صراخ فتاة جديدة ... أخذت النجوم نفسها عذا اليوم و
+            حلت بعيدا عن الصوت المزعج تاركة السماء صافية.ذلك اليوم لم يلتفت سوي
+            القمر ... نظر قليلا و ابتسم فكبرت صغيرتي و صارت قمراً. بيضاء الروح ,
+            جميلة المبسم و النوايا. كان ختام تموز ... ختاماتِ مسك
+          </div>
+        </div>
+
+        <div class="message-box">
+          <div class="code-message" onclick="decodeMessage(this)">
+            <pre>
+Lets's cheer each other on, and watch each other grow❤️❤️❤️</pre
+            >
+          </div>
+          <div class="decoded-message">
+            Here or there , ups and downs ..... I will be their
+          </div>
+        </div>
+
+        <div class="message-box">
+          <div class="code-message" onclick="decodeMessage(this)">
+            <pre>
+I don't know what I'd ever do without you
+</pre
+            >
+          </div>
+          <div class="decoded-message">
+            But I see your true colors Shining through I see your true colors
+            And that's why I love you So don't be afraid to let them show Your
+            true colors True colors are beautiful Like a rainbow
+          </div>
+        </div>
+      </section>
+
+      <section class="thank-you">
+        <h2>Thank You For Being You</h2>
+        <p>
+          The world is brighter with you in it. Wishing you the happiest
+          birthday!
+        </p>
+      </section>
+    </div>
+
+    <!-- Hidden Music Player -->
+    <audio id="musicPlayer" autoplay loop>
+      <source src="jan/Indila - Love Story (Lyrics).mp4" type="audio/mpeg" />
+      <!-- Note: Replace with actual Indila - Love Story MP3 URL -->
+    </audio>
+
+    <script>
+      // Create floating hearts
+      function createHearts() {
+        setInterval(() => {
+          const heart = document.createElement("div");
+          heart.className = "heart";
+          heart.innerHTML = "❤";
+
+          // Random position
+          heart.style.left = `${Math.random() * 100}%`;
+
+          // Random size
+          const size = Math.random() * 30 + 20;
+          heart.style.fontSize = `${size}px`;
+
+          document.getElementById("heartsContainer").appendChild(heart);
+
+          // Remove heart after animation
+          setTimeout(() => {
+            heart.remove();
+          }, 4000);
+        }, 300);
+      }
+
+      // Decode secret messages
+      function decodeMessage(element) {
+        const decoded = element.nextElementSibling;
+
+        // Toggle display
+        if (decoded.style.display === "block") {
+          decoded.style.display = "none";
+        } else {
+          decoded.style.display = "block";
+
+          // Add confetti effect
+          createConfetti(
+            element.getBoundingClientRect().x,
+            element.getBoundingClientRect().y
+          );
+        }
+      }
+
+      // Simple confetti effect
+      function createConfetti(x, y) {
+        for (let i = 0; i < 20; i++) {
+          const confetti = document.createElement("div");
+          confetti.className = "heart";
+          confetti.innerHTML = ["❤", "✨", "🎉"][Math.floor(Math.random() * 3)];
+          confetti.style.left = `${x + Math.random() * 100 - 50}px`;
+          confetti.style.top = `${y}px`;
+          confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
+          confetti.style.animationDuration = `${Math.random() * 2 + 1}s`;
+
+          document.getElementById("heartsContainer").appendChild(confetti);
+
+          setTimeout(() => {
+            confetti.remove();
+          }, 2000);
+        }
+      }
+
+      // Auto-play videos on hover (for desktop)
+      function setupVideoHover() {
+        const videos = document.querySelectorAll(".memory-card video");
+        if (videos.length > 0) {
+          videos.forEach((video) => {
+            video.addEventListener("mouseover", () => {
+              video.play();
+            });
+
+            video.addEventListener("mouseout", () => {
+              video.pause();
+              video.currentTime = 0;
+            });
+
+            // For touch devices
+            video.addEventListener("touchstart", () => {
+              if (video.paused) {
+                video.play();
+              } else {
+                video.pause();
+              }
+            });
+          });
+        }
+      }
+
+      // Initialize everything when page loads
+      window.onload = function () {
+        createHearts();
+        setupVideoHover();
+
+        // Try to autoplay music (may not work on all mobile devices without user interaction)
+        const musicPlayer = document.getElementById("musicPlayer");
+        const playPromise = musicPlayer.play();
+
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            // Auto-play was prevented, show play button
+            console.log("Auto-play prevented, show play button");
+          });
+        }
+      };
+
+      // Make sure heart gallery maintains aspect ratio on resize
+      window.addEventListener("resize", function () {
+        const gallery = document.querySelector(".heart-gallery");
+        if (gallery) {
+          gallery.style.height = `${gallery.offsetWidth * 0.9}px`;
+        }
+      });
+    </script>
+  </body>
+</html>
