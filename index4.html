@@ -23,9 +23,47 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
+    <style>
+      /* Music Control Button */
+      .music-control {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        font-size: 18px;
+      }
+      
+      /* Animation for music note */
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0px); }
+      }
+      .music-control i {
+        animation: float 1.5s infinite;
+      }
+    </style>
   </head>
 
   <body>
+    <!-- Background Music -->
+    <audio id="birthdayMusic" loop>
+      <source src="/script/heart.mp4" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    
+    <!-- Music Control Button -->
+    <button id="musicControl" class="music-control" title="Toggle Music">
+      <i class="fas fa-music"></i>
+    </button>
+
     <div id="wrapper">
       <div class="flag__birthday">
         <img src="./images/1.png" alt="" width="350" class="flag__left" />
@@ -165,108 +203,129 @@
         </div>
       </div>
     </div>
-  </body>
-  <script>
-    let datetxt = "31 july";
-    let datatxtletter =
-      "My love. You are a very special girl. I always silently thank you for coming into my life. Today, I wish you all the best, lots of health, and lots of joy. I always hope we will celebrate many more birthdays like this together. Happy birthday to you.💕";
-    let titleLetter = "To you";
-    let charArrDate = datetxt.split("");
-    let charArrDateLetter = datatxtletter.split("");
-    let charArrTitle = titleLetter.split("");
-    let currentIndex = 0;
-    let currentIndexLetter = 0;
-    let currentIndexTitle = 0;
-    let date__of__birth = document.querySelector(".date__of__birth span");
-    let text__letter = document.querySelector(".text__letter p");
-    setTimeout(function () {
-      timeDatetxt = setInterval(function () {
-        if (currentIndex < charArrDate.length) {
-          date__of__birth.textContent += charArrDate[currentIndex];
-          currentIndex++;
-        } else {
-          let i = document.createElement("i");
-          i.className = "fa-solid fa-star";
-          document.querySelector(".date__of__birth").prepend(i);
-          document
-            .querySelector(".date__of__birth")
-            .appendChild(i.cloneNode(true));
-          clearInterval(timeDatetxt);
-        }
-      }, 100);
-    }, 12000);
 
-    var intervalContent;
-    var intervalTitle;
-    $("#btn__letter").on("click", function () {
-      $(".box__letter").slideDown();
+    <script>
+     // Attempt to autoplay music immediately
+      document.addEventListener('DOMContentLoaded', function() {
+        const music = document.getElementById('birthdayMusic');
+        music.volume = 0.7; // Set volume (0.0 to 1.0)
+        
+        // Some browsers require this promise handling
+        const playPromise = music.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            // Autoplay was prevented, but we can't show UI about it
+            console.log("Autoplay prevented:", error);
+          });
+        }
+      });
+      
+      // Original Script
+      let datetxt = "31 july";
+      let datatxtletter =
+        "My love. You are a very special girl. I always silently thank you for coming into my life. Today, I wish you all the best, lots of health, and lots of joy. I always hope we will celebrate many more birthdays like this together. Happy birthday to you.💕";
+      let titleLetter = "To you";
+      let charArrDate = datetxt.split("");
+      let charArrDateLetter = datatxtletter.split("");
+      let charArrTitle = titleLetter.split("");
+      let currentIndex = 0;
+      let currentIndexLetter = 0;
+      let currentIndexTitle = 0;
+      let date__of__birth = document.querySelector(".date__of__birth span");
+      let text__letter = document.querySelector(".text__letter p");
+      
       setTimeout(function () {
-        $(".letter__border").slideDown();
-      }, 1000);
-      setTimeout(function () {
-        intervalTitle = setInterval(function () {
-          if (currentIndexTitle < charArrTitle.length) {
-            document.querySelector(".title__letter").textContent +=
-              charArrTitle[currentIndexTitle];
-            let i = document.createElement("i");
-            i.className = "fa-solid fa-heart";
-            document.querySelector(".title__letter").appendChild(i);
-            currentIndexTitle++;
+        timeDatetxt = setInterval(function () {
+          if (currentIndex < charArrDate.length) {
+            date__of__birth.textContent += charArrDate[currentIndex];
+            currentIndex++;
           } else {
-            clearInterval(intervalTitle);
+            let i = document.createElement("i");
+            i.className = "fa-solid fa-star";
+            document.querySelector(".date__of__birth").prepend(i);
+            document
+              .querySelector(".date__of__birth")
+              .appendChild(i.cloneNode(true));
+            clearInterval(timeDatetxt);
           }
         }, 100);
-      }, 2000);
-      setTimeout(function () {
-        document.querySelector("#heart__letter").classList.add("animationOp");
-        document.querySelector(".love__img").classList.add("animationOp");
-        document.querySelector("#mewmew").classList.add("animationOp");
-      }, 2800);
-      setTimeout(function () {
-        document.querySelectorAll(".heart").forEach((item) => {
-          item.classList.add("animation");
-        });
-      }, 3500);
-      setTimeout(function () {
-        intervalContent = setInterval(function () {
-          if (currentIndexLetter < charArrDateLetter.length) {
-            text__letter.textContent += charArrDateLetter[currentIndexLetter];
-            currentIndexLetter++;
-          } else {
-            clearInterval(intervalContent);
-          }
-        }, 50);
-      }, 6000);
-    });
-    $(".close").on("click", function () {
-      clearInterval(intervalContent);
-      document.querySelector(".title__letter").textContent = "";
-      text__letter.textContent = "";
-      currentIndexLetter = 0;
-      currentIndexTitle = 0;
-      document.querySelector("#heart__letter").classList.remove("animationOp");
-      document.querySelector(".love__img").classList.remove("animationOp");
-      document.querySelector("#mewmew").classList.remove("animationOp");
-      document.querySelectorAll(".heart").forEach((item) => {
-        item.classList.remove("animation");
+      }, 12000);
+
+      var intervalContent;
+      var intervalTitle;
+      $("#btn__letter").on("click", function () {
+        $(".box__letter").slideDown();
+        setTimeout(function () {
+          $(".letter__border").slideDown();
+        }, 1000);
+        setTimeout(function () {
+          intervalTitle = setInterval(function () {
+            if (currentIndexTitle < charArrTitle.length) {
+              document.querySelector(".title__letter").textContent +=
+                charArrTitle[currentIndexTitle];
+              let i = document.createElement("i");
+              i.className = "fa-solid fa-heart";
+              document.querySelector(".title__letter").appendChild(i);
+              currentIndexTitle++;
+            } else {
+              clearInterval(intervalTitle);
+            }
+          }, 100);
+        }, 2000);
+        setTimeout(function () {
+          document.querySelector("#heart__letter").classList.add("animationOp");
+          document.querySelector(".love__img").classList.add("animationOp");
+          document.querySelector("#mewmew").classList.add("animationOp");
+        }, 2800);
+        setTimeout(function () {
+          document.querySelectorAll(".heart").forEach((item) => {
+            item.classList.add("animation");
+          });
+        }, 3500);
+        setTimeout(function () {
+          intervalContent = setInterval(function () {
+            if (currentIndexLetter < charArrDateLetter.length) {
+              text__letter.textContent += charArrDateLetter[currentIndexLetter];
+              currentIndexLetter++;
+            } else {
+              clearInterval(intervalContent);
+            }
+          }, 50);
+        }, 6000);
       });
-      $(".box__letter").slideUp();
-      $(".letter__border").slideUp();
-    });
+      
+      $(".close").on("click", function () {
+        clearInterval(intervalContent);
+        document.querySelector(".title__letter").textContent = "";
+        text__letter.textContent = "";
+        currentIndexLetter = 0;
+        currentIndexTitle = 0;
+        document.querySelector("#heart__letter").classList.remove("animationOp");
+        document.querySelector(".love__img").classList.remove("animationOp");
+        document.querySelector("#mewmew").classList.remove("animationOp");
+        document.querySelectorAll(".heart").forEach((item) => {
+          item.classList.remove("animation");
+        });
+        $(".box__letter").slideUp();
+        $(".letter__border").slideUp();
+      });
 
-    let mailBox = document.querySelector(".mail");
-    let boxmail = document.querySelector(".boxMail");
-    var close = document.querySelector(".fa-xmark");
-    mailBox.onclick = function () {
-      mailBox.classList.toggle("active");
-      boxmail.classList.add("active");
-    };
+      let mailBox = document.querySelector(".mail");
+      let boxmail = document.querySelector(".boxMail");
+      var close = document.querySelector(".fa-xmark");
+      mailBox.onclick = function () {
+        mailBox.classList.toggle("active");
+        boxmail.classList.add("active");
+      };
 
-    close.addEventListener("click", function () {
-      boxmail.classList.remove("active");
-    });
-    setTimeout(() => {
-  window.location.href = "./index2.html"; // change to your desired page
-}, 60000); // 1000ms = 1 second
-  </script>
+      close.addEventListener("click", function () {
+        boxmail.classList.remove("active");
+      });
+      
+      setTimeout(() => {
+        window.location.href = "./index2.html"; // change to your desired page
+      }, 60000); // 1000ms = 1 second
+    </script>
+  </body>
 </html>
