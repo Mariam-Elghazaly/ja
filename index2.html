@@ -627,7 +627,7 @@ I don't know what I'd ever do without you
 
     <!-- Hidden Music Player -->
     <audio id="musicPlayer" autoplay loop>
-      <source src="jan/Indila - Love Story (Lyrics).mp4" type="audio/mpeg" />
+      <source src="jan/Indila - Love Story (Lyrics).mp3" type="audio/mpeg" />
       <!-- Note: Replace with actual Indila - Love Story MP3 URL -->
     </audio>
 
@@ -693,46 +693,19 @@ I don't know what I'd ever do without you
       }
 
       // Auto-play videos on hover (for desktop)
-      function setupVideoHover() {
-        const videos = document.querySelectorAll(".memory-card video");
-        if (videos.length > 0) {
-          videos.forEach((video) => {
-            video.addEventListener("mouseover", () => {
-              video.play();
-            });
-
-            video.addEventListener("mouseout", () => {
-              video.pause();
-              video.currentTime = 0;
-            });
-
-            // For touch devices
-            video.addEventListener("touchstart", () => {
-              if (video.paused) {
-                video.play();
-              } else {
-                video.pause();
-              }
-            });
+      document.addEventListener("click", function initAudio() {
+        const music = document.getElementById("musicPlayer");
+        if (music.paused) {
+          music.volume = 0.7;
+          music.play().catch((err) => {
+            console.log("Autoplay blocked:", err.message);
           });
         }
-      }
+        document.removeEventListener("click", initAudio); // only once
+      });
 
-      // Initialize everything when page loads
       window.onload = function () {
         createHearts();
-        setupVideoHover();
-
-        // Try to autoplay music (may not work on all mobile devices without user interaction)
-        const musicPlayer = document.getElementById("musicPlayer");
-        const playPromise = musicPlayer.play();
-
-        if (playPromise !== undefined) {
-          playPromise.catch((error) => {
-            // Auto-play was prevented, show play button
-            console.log("Auto-play prevented, show play button");
-          });
-        }
       };
 
       // Make sure heart gallery maintains aspect ratio on resize
